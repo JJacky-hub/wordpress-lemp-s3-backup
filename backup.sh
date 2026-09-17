@@ -18,7 +18,7 @@ mkdir -p $BACKUP_DIR
 cd $SITE_PATH
 wp db export $BACKUP_DIR/db.sql --allow-root > /dev/null
 
-# 3. Archieve the database and files wp-content
+# 3. Archive the database and files wp-content
 tar -czf $BACKUP_DIR/$FILE_NAME -C $SITE_PATH wp-content -C $BACKUP_DIR db.sql
 
 # 4. Upload to AWS S3 (uncomment after AWS CLI setup)
