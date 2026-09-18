@@ -7,7 +7,7 @@ DATE=$(date +%Y-%m-%d_%H-%M-%S)
 FILE_NAME="wp_backup_$DATE.tar.gz"
 
 # AWS S3 settings
-S3_BUCKET="s3://my-wordpress-backups-bucket"
+S3_BUCKET="s3://jjacky-backup-2026"
 
 echo "[+] Starting backup process for $SITE_PATH..."
 
@@ -22,7 +22,7 @@ wp db export $BACKUP_DIR/db.sql --allow-root > /dev/null
 tar -czf $BACKUP_DIR/$FILE_NAME -C $SITE_PATH wp-content -C $BACKUP_DIR db.sql
 
 # 4. Upload to AWS S3 (uncomment after AWS CLI setup)
-# aws s3 cp $BACKUP_DIR/$FILE_NAME $S3_BUCKET/
+aws s3 cp $BACKUP_DIR/$FILE_NAME $S3_BUCKET/
 
 # 5. Clean up temporary files
 rm -rf $BACKUP_DIR/db.sql
